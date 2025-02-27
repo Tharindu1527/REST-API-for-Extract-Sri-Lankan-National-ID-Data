@@ -25,8 +25,8 @@ A Django REST API that extracts information from Sri Lankan National ID cards us
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/srilanka-id-ocr-api.git
-   cd srilanka-id-ocr-api
+   git clone https://github.com/Tharindu1527/REST-API-for-Extract-Sri-Lankan-National-ID-Data.git
+   cd REST-API-for-Extract-Sri-Lankan-National-ID-Data
    ```
 
 2. Build and run the Docker container:
@@ -91,7 +91,3 @@ A JSON object containing:
 - OCR accuracy depends on image quality
 - Specific field recognition depends on the format of the ID card
 - The system works best with clear, well-lit images
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
