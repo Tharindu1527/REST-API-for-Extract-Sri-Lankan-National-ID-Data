@@ -1,0 +1,182 @@
+{
+  "info": {
+    "_postman_id": "f5e71a2e-d54c-4d15-b9de-3a70f1e37c60",
+    "name": "Sri Lankan ID Card OCR API",
+    "description": "A collection for extracting information from Sri Lankan ID cards using OCR technology.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Extract ID Card Data",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": "/path/to/id_card_image.jpg",
+              "description": "The image file of the Sri Lankan ID card"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/id/extract/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "id",
+            "extract",
+            ""
+          ]
+        },
+        "description": "Extracts information from a Sri Lankan ID card image including name, ID number, date of birth, and address."
+      },
+      "response": [
+        {
+          "name": "Successful Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/path/to/id_card_image.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/id/extract/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "id",
+                "extract",
+                ""
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"scan_id\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"data\": {\n    \"full_name\": \"සම්පත් කුමාර පෙරේරා\",\n    \"id_number\": \"198534267V\",\n    \"date_of_birth\": \"1985-12-08\",\n    \"address\": \"19/54, පේරාදෙණිය පාර, කෑගල්ල\"\n  }\n}",
+          "description": "Successful extraction of ID card data"
+        },
+        {
+          "name": "Bad Request - Missing Image",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "{{base_url}}/api/id/extract/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "id",
+                "extract",
+                ""
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"වලංගු නොවන ඉල්ලීමක්\",\n  \"details\": {\n    \"image\": [\n      \"This field is required.\"\n    ]\n  }\n}",
+          "description": "Error response when image is not provided"
+        },
+        {
+          "name": "OCR Processing Failed",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/path/to/blurry_image.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/id/extract/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "id",
+                "extract",
+                ""
+              ]
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": \"OCR ක්‍රියාවලිය අසාර්ථක විය\",\n  \"details\": \"Error in image preprocessing\"\n}",
+          "description": "Error response when OCR processing fails"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string",
+      "description": "Base URL for the API"
+    }
+  ]
+}
