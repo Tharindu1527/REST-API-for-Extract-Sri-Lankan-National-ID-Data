@@ -129,6 +129,7 @@ def extract_full_name(text):
     """Extract full name from the OCR text"""
     # Look for Sinhala text following name identifiers
     name_patterns = [
+        r'Name[:\s]*([^\n]+)',
         r'නම[:\s]*([^\n]+)', 
         r'සම්පූර්ණ නම[:\s]*([^\n]+)', 
         r'මුල් නම[:\s]*([^\n]+)', 
